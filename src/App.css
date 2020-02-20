@@ -1,0 +1,40 @@
+.App {
+  text-align: center;
+}
+
+.axis {
+	font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #D4D8DA;
+  stroke-width: 2px;
+  shape-rendering: crispEdges;
+}
+
+.line {
+  fill: none;
+  stroke: #5bc0de;
+  stroke-width: 5px;
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+.focus circle {
+  fill: #F1F3F3;
+  stroke: #5cb85c;
+  stroke-width: 5px;
+}
+  
+.hover-line {
+  stroke: #428bca;
+  stroke-width: 2px;
+  stroke-dasharray: 3,3;
+}
+.grid line {stroke: lightgrey;stroke-opacity: 0.7;shape-rendering: crispEdges;}
+.grid path {stroke-width: 0;}
