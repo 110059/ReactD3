@@ -14,7 +14,7 @@ class LineChart extends React.Component {
 
     createChart() {
       let svg = d3.select(this.chartRef.current),
-      margin = {top: 20, right: 100, bottom: 30, left: 40},
+      margin = {top: 20, right: 100, bottom: 100, left: 40},
       widthA = 960, heightA = 500,
       width = widthA - margin.left - margin.right,
       height = heightA - margin.top - margin.bottom;
@@ -26,7 +26,8 @@ class LineChart extends React.Component {
 
       let line = d3.line()
           .x(function(d) { return x(d.category); })
-          .y(function(d) { return y(d.percentage); });
+          .y(function(d) { return y(d.percentage); })
+          .curve(d3.curveLinear)
 
       let g = svg.append("g")
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");   
@@ -59,6 +60,7 @@ class LineChart extends React.Component {
       });
     
       console.log(data);
+
 
       x.domain([0, d3.max(data, function(d) { return d.category; })]);
       
@@ -99,7 +101,7 @@ class LineChart extends React.Component {
           .attr("class", "line")
           .attr("d", line);
 
-      var focus = g.append("g")
+      let focus = g.append("g")
           .attr("class", "focus")
           .style("display", "none");
 
@@ -128,6 +130,17 @@ class LineChart extends React.Component {
           .on("mouseover", function() { focus.style("display", null); })
           .on("mouseout", function() { focus.style("display", "none"); })
           .on("mousemove", mousemove);
+
+       let g1 = svg.append("g")
+          .attr("transform", "translate(" + (+margin.left) + "," + (+margin.top+height+60) +")");    
+
+        g1.append("line")          
+        .style("stroke", "blue")  
+        .style("stroke-width", "#5bc0de")
+        .attr("x1", 0)    
+        .attr("y1", 0)     
+        .attr("x2", width)     
+        .attr("y2", 0);  
 
       function mousemove() {
         let x0 = x.invert(d3.mouse(this)[0]),
