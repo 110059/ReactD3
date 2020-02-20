@@ -5,14 +5,14 @@ class LineChart extends React.Component {
     constructor(props) {
         super(props);
         this.chartRef = React.createRef();
-        this.drawChart = this.drawChart.bind(this);
+        this.createChart = this.createChart.bind(this);
     }
 
     componentDidMount() {
-      this.drawChart();
+      this.createChart();
     }
 
-    drawChart() {
+    createChart() {
       let svg = d3.select(this.chartRef.current),
       margin = {top: 20, right: 100, bottom: 30, left: 40},
       widthA = 960, heightA = 500,
@@ -58,7 +58,7 @@ class LineChart extends React.Component {
           
       });
     
-     // console.log(data);
+      console.log(data);
 
       x.domain(d3.extent(data, function(d) { return d.category; }));
       y.domain([d3.min(data, function(d) { return d.percentage; }), d3.max(data, function(d) { return d.percentage; })]);
@@ -103,7 +103,7 @@ class LineChart extends React.Component {
 
       focus.append("line")
           .attr("class", "y-hover-line hover-line")
-          .attr("x1", width)
+          .attr("x1", 0)
           .attr("x2", width);
 
       focus.append("circle")
@@ -131,7 +131,7 @@ class LineChart extends React.Component {
         focus.attr("transform", "translate(" + x(d.category) + "," + y(d.percentage) + ")");
         focus.select("text").text(function() { return "Name: " + d.user; });
         focus.select(".x-hover-line").attr("y2", height - y(d.percentage));
-        focus.select(".y-hover-line").attr("x2", width + width);
+        focus.select(".y-hover-line").attr("x2", width);
       }
   });
 
