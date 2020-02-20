@@ -1,3 +1,5 @@
-# cd ReactD3
+> cd ReactD3
 
-# npm start
+> npm start
+
+> http://localhost:3000/
