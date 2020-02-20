@@ -17,7 +17,7 @@
 .line {
   fill: none;
   stroke: #5bc0de;
-  stroke-width: 5px;
+  stroke-width: 2px;
 }
 
 .overlay {
@@ -32,7 +32,7 @@
 }
   
 .hover-line {
-  stroke: #428bca;
+  stroke: #5cb85c;
   stroke-width: 2px;
   stroke-dasharray: 3,3;
 }

@@ -29,7 +29,7 @@ class LineChart extends React.Component {
           .y(function(d) { return y(d.percentage); });
 
       let g = svg.append("g")
-          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");   
 
       d3.json("data.json", function(error, res) {
           if (error) throw error;
@@ -60,8 +60,9 @@ class LineChart extends React.Component {
     
       console.log(data);
 
-      x.domain(d3.extent(data, function(d) { return d.category; }));
-      y.domain([d3.min(data, function(d) { return d.percentage; }), d3.max(data, function(d) { return d.percentage; })]);
+      x.domain([0, d3.max(data, function(d) { return d.category; })]);
+      
+      y.domain([0, 100]);
 
       g.append("g")
           .attr("class", "axis axis--x")
@@ -70,7 +71,7 @@ class LineChart extends React.Component {
 
       g.append("g")
           .attr("class", "axis axis--y")
-          .call(d3.axisLeft(y).ticks(6).tickFormat(function(d) { return d + "%"; }))
+          .call(d3.axisLeft(y).ticks(10).tickFormat(function(d) { return d + "%"; }))
         .append("text")
           .attr("class", "axis-title")
           .attr("transform", "rotate(-90)")
@@ -139,6 +140,7 @@ class LineChart extends React.Component {
 
     render() {
         return <svg width="960" height="500" ref={this.chartRef} ></svg>
+               
     }
 }
 
