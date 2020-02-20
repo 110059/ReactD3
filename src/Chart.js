@@ -67,7 +67,12 @@ class LineChart extends React.Component {
       g.append("g")
           .attr("class", "axis axis--x")
           .attr("transform", "translate(0," + height + ")")
-          .call(d3.axisBottom(x));
+          .call(d3.axisBottom(x))
+          .append("text")
+            .attr("fill", "#d9534f")
+            .attr("y", -5)
+            .attr("x", 400)
+            .text("Category");
 
       g.append("g")
           .attr("class", "axis axis--y")
@@ -76,9 +81,10 @@ class LineChart extends React.Component {
           .attr("class", "axis-title")
           .attr("transform", "rotate(-90)")
           .attr("y", 6)
+          .attr("x", -150)
           .attr("dy", ".71em")
           .style("text-anchor", "end")
-          .attr("fill", "#5D6971")
+          .attr("fill", "#d9534f")
           .text("Percentage");
       
     g.append("g")
