@@ -32,6 +32,12 @@ class LineChart extends React.Component {
       let g = svg.append("g")
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");   
 
+      g.append("text")
+      .attr("x", width/2 - 100)
+      .attr("y", -1)
+      .text("Percent Value VS Category")
+      .attr("fill", "#d9534f")
+
       d3.json("data.json", function(error, res) {
           if (error) throw error;
           let data = [];
@@ -135,8 +141,8 @@ class LineChart extends React.Component {
           .attr("transform", "translate(" + (+margin.left) + "," + (+margin.top+height+60) +")");    
 
         g1.append("line")          
-        .style("stroke", "blue")  
-        .style("stroke-width", "#5bc0de")
+        .style("stroke", "#5bc0de")  
+        .style("stroke-width", 2)
         .attr("x1", 0)    
         .attr("y1", 0)     
         .attr("x2", width)     
@@ -153,13 +159,12 @@ class LineChart extends React.Component {
         focus.select(".x-hover-line").attr("y2", height - y(d.percentage));
         focus.select(".y-hover-line").attr("x2", width);
       }
-  });
+    });
 
     }
 
     render() {
-        return <svg width="960" height="500" ref={this.chartRef} ></svg>
-               
+        return <svg width="960" height="500" ref={this.chartRef} ></svg>              
     }
 }
 
